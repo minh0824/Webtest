@@ -137,6 +137,40 @@
               <div class="distance-track"><span id="distanceBar"></span></div>
             </div>
           </article>
+
+          <article class="panel code-panel">
+            <div class="panel-title">
+              <h2>Mã giải thuật</h2>
+              <span id="codeCaption">Mã mẫu theo thuật toán đang chọn</span>
+            </div>
+            <div class="code-toolbar" aria-label="Tuy chon ma nguon">
+              <label class="select-block" for="languageSelect">
+                <span>Ngôn ngữ</span>
+                <select id="languageSelect">
+                  <option value="javascript">JavaScript</option>
+                  <option value="python">Python</option>
+                  <option value="cpp">C++</option>
+                  <option value="java">Java</option>
+                </select>
+              </label>
+
+              <label class="select-block" for="themeSelect">
+                <span>Theme</span>
+                <select id="themeSelect">
+                  <option value="midnight">Midnight</option>
+                  <option value="paper">Paper</option>
+                  <option value="contrast">High contrast</option>
+                </select>
+              </label>
+            </div>
+            <div class="code-layout">
+              <pre id="codeBlock" class="code-block theme-midnight" aria-label="Ma nguon minh hoa"><code></code></pre>
+              <div class="code-notes">
+                <h3>Ý chính</h3>
+                <ul id="codeNotes"></ul>
+              </div>
+            </div>
+          </article>
         </section>
       </section>
     </main>

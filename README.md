@@ -16,6 +16,7 @@
 - Hiển thị giá trị hash dạng hex và dấu vân tay nhị phân 32-bit.
 - Minh hoạ cách key được phân bố vào 12 bucket trong bảng hash.
 - So sánh hiệu ứng avalanche khi thay đổi chuỗi đầu vào.
+- Xem mã giải thuật bằng JavaScript, Python, C++ và Java với nhiều theme syntax highlight.
 
 ## Chạy local
 

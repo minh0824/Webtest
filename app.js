@@ -8,6 +8,8 @@ const state = {
   text: "hashing",
   compareText: "Hashing",
   algorithm: "poly",
+  language: "javascript",
+  codeTheme: "midnight",
   step: 0,
   timer: null,
 };
@@ -81,6 +83,177 @@ const samples = [
   "hashing",
 ];
 
+const codeSamples = {
+  javascript: {
+    label: "JavaScript",
+    extension: "js",
+    samples: {
+      poly: `function hashString(text) {
+  const MOD = 1000000007n;
+  const BASE = 31n;
+  let h = 0n;
+
+  for (const ch of text) {
+    const code = BigInt(ch.codePointAt(0));
+    h = (h * BASE + code) % MOD;
+  }
+
+  return h;
+}`,
+      djb2: `function hashString(text) {
+  let h = 5381 >>> 0;
+
+  for (const ch of text) {
+    const code = ch.codePointAt(0);
+    h = (((h << 5) + h) + code) >>> 0;
+  }
+
+  return h;
+}`,
+      fnv1a: `function hashString(text) {
+  let h = 2166136261 >>> 0;
+
+  for (const ch of text) {
+    const code = ch.codePointAt(0);
+    h ^= code;
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+
+  return h;
+}`,
+    },
+  },
+  python: {
+    label: "Python",
+    extension: "py",
+    samples: {
+      poly: `def hash_string(text):
+    mod = 1_000_000_007
+    base = 31
+    h = 0
+
+    for ch in text:
+        code = ord(ch)
+        h = (h * base + code) % mod
+
+    return h`,
+      djb2: `def hash_string(text):
+    h = 5381
+
+    for ch in text:
+        code = ord(ch)
+        h = ((h << 5) + h + code) & 0xFFFFFFFF
+
+    return h`,
+      fnv1a: `def hash_string(text):
+    h = 2166136261
+
+    for ch in text:
+        code = ord(ch)
+        h ^= code
+        h = (h * 16777619) & 0xFFFFFFFF
+
+    return h`,
+    },
+  },
+  cpp: {
+    label: "C++",
+    extension: "cpp",
+    samples: {
+      poly: `long long hashString(const string& text) {
+    const long long MOD = 1000000007;
+    const long long BASE = 31;
+    long long h = 0;
+
+    for (unsigned char ch : text) {
+        int code = ch;
+        h = (h * BASE + code) % MOD;
+    }
+
+    return h;
+}`,
+      djb2: `uint32_t hashString(const string& text) {
+    uint32_t h = 5381;
+
+    for (unsigned char ch : text) {
+        uint32_t code = ch;
+        h = ((h << 5) + h) + code;
+    }
+
+    return h;
+}`,
+      fnv1a: `uint32_t hashString(const string& text) {
+    uint32_t h = 2166136261u;
+
+    for (unsigned char ch : text) {
+        uint32_t code = ch;
+        h ^= code;
+        h *= 16777619u;
+    }
+
+    return h;
+}`,
+    },
+  },
+  java: {
+    label: "Java",
+    extension: "java",
+    samples: {
+      poly: `static long hashString(String text) {
+    final long MOD = 1_000_000_007L;
+    final long BASE = 31L;
+    long h = 0L;
+
+    for (int i = 0; i < text.length(); i++) {
+        int code = text.codePointAt(i);
+        h = (h * BASE + code) % MOD;
+    }
+
+    return h;
+}`,
+      djb2: `static long hashString(String text) {
+    long h = 5381L;
+
+    for (int i = 0; i < text.length(); i++) {
+        int code = text.codePointAt(i);
+        h = ((h << 5) + h + code) & 0xFFFFFFFFL;
+    }
+
+    return h;
+}`,
+      fnv1a: `static long hashString(String text) {
+    long h = 2166136261L;
+
+    for (int i = 0; i < text.length(); i++) {
+        int code = text.codePointAt(i);
+        h ^= code;
+        h = (h * 16777619L) & 0xFFFFFFFFL;
+    }
+
+    return h;
+}`,
+    },
+  },
+};
+
+const codeNotes = {
+  poly: [
+    "BASE tạo trọng số khác nhau cho từng vị trí ký tự trong chuỗi.",
+    "MOD giữ giá trị hash trong một miền số cố định và giảm tràn số.",
+    "Công thức dùng được nhiều trong so khớp chuỗi và rolling hash.",
+  ],
+  djb2: [
+    "Giá trị seed 5381 là điểm bắt đầu quen thuộc của DJB2.",
+    "Phép (h << 5) + h tương đương h × 33.",
+    "Kết quả được ép về 32-bit để mô phỏng kiểu số nguyên không dấu.",
+  ],
+  fnv1a: [
+    "Mỗi ký tự được xor vào hash trước khi nhân với FNV prime.",
+    "Offset basis là seed chuẩn của FNV-1a 32-bit.",
+    "Thuật toán đơn giản, nhanh và thường dùng cho hash không mã hoá.",
+  ],
+};
+
 const els = {
   textInput: document.querySelector("#textInput"),
   compareInput: document.querySelector("#compareInput"),
@@ -91,6 +264,8 @@ const els = {
   playBtn: document.querySelector("#playBtn"),
   nextBtn: document.querySelector("#nextBtn"),
   resetBtn: document.querySelector("#resetBtn"),
+  languageSelect: document.querySelector("#languageSelect"),
+  themeSelect: document.querySelector("#themeSelect"),
   shortHash: document.querySelector("#shortHash"),
   algorithmFormula: document.querySelector("#algorithmFormula"),
   charStrip: document.querySelector("#charStrip"),
@@ -107,6 +282,10 @@ const els = {
   otherCompareHash: document.querySelector("#otherCompareHash"),
   bitDistance: document.querySelector("#bitDistance"),
   distanceBar: document.querySelector("#distanceBar"),
+  codeCaption: document.querySelector("#codeCaption"),
+  codeBlock: document.querySelector("#codeBlock"),
+  codeElement: document.querySelector("#codeBlock code"),
+  codeNotes: document.querySelector("#codeNotes"),
 };
 
 function charsOf(text) {
@@ -260,6 +439,46 @@ function renderCompare(baseLow32) {
   els.distanceBar.style.width = `${(distance / 32) * 100}%`;
 }
 
+
+function renderCodeSample() {
+  const language = codeSamples[state.language];
+  const algorithm = algorithms[state.algorithm];
+  const source = language.samples[state.algorithm];
+
+  els.codeCaption.textContent = `${algorithm.name} bằng ${language.label} (.${language.extension})`;
+  els.codeBlock.className = `code-block theme-${state.codeTheme}`;
+  els.codeElement.innerHTML = highlightCode(source);
+  els.codeNotes.innerHTML = "";
+
+  codeNotes[state.algorithm].forEach((note) => {
+    const item = document.createElement("li");
+    item.textContent = note;
+    els.codeNotes.append(item);
+  });
+}
+
+function highlightCode(source) {
+  const placeholders = [];
+  let html = escapeHtml(source);
+
+  html = html.replace(/(&quot;.*?&quot;|'.*?')/g, (match) => {
+    const token = `<span class="tok-string">${match}</span>`;
+    placeholders.push(token);
+    return `@@TOKEN_${placeholders.length - 1}@@`;
+  });
+
+  html = html.replace(/(\/\/.*|#.*)/g, '<span class="tok-comment">$1</span>');
+  html = html.replace(/\b(0x[0-9A-Fa-f]+|\d[\d_]*n?|\d+L|\d+u)\b/g, '<span class="tok-number">$1</span>');
+  html = html.replace(
+    /\b(function|const|let|return|for|of|def|in|long|static|final|int|uint32_t|string|String|unsigned|char|auto|void|class|public|private)\b/g,
+    '<span class="tok-keyword">$1</span>',
+  );
+  html = html.replace(/\b(hashString|hash_string|codePointAt|ord|Math|imul)\b/g, '<span class="tok-function">$1</span>');
+  html = html.replace(/@@TOKEN_(\d+)@@/g, (_, index) => placeholders[Number(index)]);
+
+  return html;
+}
+
 function render() {
   const result = hashSteps(state.text);
   const algorithm = algorithms[state.algorithm];
@@ -288,6 +507,7 @@ function render() {
   renderBits(low32);
   renderBuckets(bucket, low32);
   renderCompare(result.low32);
+  renderCodeSample();
 
   els.prevBtn.disabled = state.step === 0;
   els.nextBtn.disabled = state.step === total;
@@ -321,6 +541,16 @@ els.compareInput.addEventListener("input", (event) => {
 els.algorithm.addEventListener("change", (event) => {
   state.algorithm = event.target.value;
   render();
+});
+
+els.languageSelect.addEventListener("change", (event) => {
+  state.language = event.target.value;
+  renderCodeSample();
+});
+
+els.themeSelect.addEventListener("change", (event) => {
+  state.codeTheme = event.target.value;
+  renderCodeSample();
 });
 
 els.stepSlider.addEventListener("input", (event) => {

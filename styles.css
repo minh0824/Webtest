@@ -245,6 +245,145 @@ input[type="range"] {
   min-height: 330px;
 }
 
+
+.code-panel {
+  grid-column: 1 / -1;
+}
+
+.code-toolbar {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(180px, 240px);
+  gap: 14px;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  background: #fafcff;
+}
+
+.code-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+  gap: 16px;
+  padding: 16px;
+}
+
+.code-block {
+  min-height: 360px;
+  max-height: 520px;
+  margin: 0;
+  padding: 18px;
+  border-radius: 8px;
+  overflow: auto;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.62;
+  tab-size: 4;
+}
+
+.code-notes {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 220px;
+  padding: 16px;
+  border: 1px solid #dbe2ec;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.code-notes h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.code-notes ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+  color: #344054;
+  line-height: 1.5;
+}
+
+.theme-midnight {
+  background: #111827;
+  color: #e6edf5;
+}
+
+.theme-paper {
+  border: 1px solid #d9dee8;
+  background: #fffdf7;
+  color: #17202a;
+}
+
+.theme-contrast {
+  background: #050505;
+  color: #ffffff;
+}
+
+.tok-keyword {
+  color: #2f63d9;
+  font-weight: 800;
+}
+
+.tok-function {
+  color: #0f766e;
+  font-weight: 800;
+}
+
+.tok-number {
+  color: #d6503f;
+  font-weight: 700;
+}
+
+.tok-string {
+  color: #168a51;
+}
+
+.tok-comment {
+  color: #7a8799;
+  font-style: italic;
+}
+
+.theme-midnight .tok-keyword {
+  color: #8ab4ff;
+}
+
+.theme-midnight .tok-function {
+  color: #5eead4;
+}
+
+.theme-midnight .tok-number {
+  color: #fca5a5;
+}
+
+.theme-midnight .tok-string {
+  color: #86efac;
+}
+
+.theme-midnight .tok-comment {
+  color: #94a3b8;
+}
+
+.theme-contrast .tok-keyword {
+  color: #00e5ff;
+}
+
+.theme-contrast .tok-function {
+  color: #7cff6b;
+}
+
+.theme-contrast .tok-number {
+  color: #ffcf33;
+}
+
+.theme-contrast .tok-string {
+  color: #ff8bd1;
+}
+
+.theme-contrast .tok-comment {
+  color: #b8b8b8;
+}
+
 .panel-title {
   display: flex;
   align-items: center;
@@ -534,6 +673,10 @@ input[type="range"] {
     grid-template-columns: 1fr;
   }
 
+  .code-layout {
+    grid-template-columns: 1fr;
+  }
+
   .pulse-track {
     height: 22px;
     width: 4px;
@@ -576,7 +719,8 @@ input[type="range"] {
 
   .settings-grid,
   .range-block,
-  .button-row {
+  .button-row,
+  .code-toolbar {
     grid-template-columns: 1fr;
     grid-column: auto;
   }
