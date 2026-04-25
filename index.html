@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minh hoa String Hashing</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-label="Cong cu minh hoa hashing chuoi">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">String hashing visualizer</p>
+            <h1>Hash từng ký tự, thấy từng phép tính</h1>
+          </div>
+          <div class="hash-badge" aria-label="Hash hien tai">
+            <span>Hash</span>
+            <strong id="shortHash">--</strong>
+          </div>
+        </header>
+
+        <section class="control-panel" aria-label="Bang dieu khien">
+          <label class="input-block" for="textInput">
+            <span>Chuỗi đầu vào</span>
+            <textarea id="textInput" rows="3" spellcheck="false">hashing</textarea>
+          </label>
+
+          <div class="settings-grid">
+            <label class="select-block" for="algorithm">
+              <span>Thuật toán</span>
+              <select id="algorithm">
+                <option value="poly">Polynomial rolling</option>
+                <option value="djb2">DJB2</option>
+                <option value="fnv1a">FNV-1a 32-bit</option>
+              </select>
+            </label>
+
+            <label class="range-block" for="stepSlider">
+              <span>Bước xử lý <b id="stepLabel">0/0</b></span>
+              <input id="stepSlider" type="range" min="0" value="0" />
+            </label>
+
+            <div class="button-row" aria-label="Dieu khien mo phong">
+              <button id="prevBtn" type="button" class="icon-button" title="Bước trước" aria-label="Bước trước">
+                <span aria-hidden="true">‹</span>
+              </button>
+              <button id="playBtn" type="button" class="primary-button">Chạy</button>
+              <button id="nextBtn" type="button" class="icon-button" title="Bước tiếp" aria-label="Bước tiếp">
+                <span aria-hidden="true">›</span>
+              </button>
+              <button id="resetBtn" type="button" class="ghost-button">Reset</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="visual-grid">
+          <article class="panel state-panel">
+            <div class="panel-title">
+              <h2>Dòng chảy ký tự</h2>
+              <span id="algorithmFormula">h = (h × 31 + code) mod 1,000,000,007</span>
+            </div>
+            <div id="charStrip" class="char-strip" aria-label="Danh sach ky tu"></div>
+            <div class="machine">
+              <div class="machine-node input-node">
+                <span>Ký tự</span>
+                <strong id="currentChar">--</strong>
+              </div>
+              <div class="pulse-track" aria-hidden="true"><span id="pulseDot"></span></div>
+              <div class="machine-node code-node">
+                <span>Mã Unicode</span>
+                <strong id="currentCode">--</strong>
+              </div>
+              <div class="pulse-track second" aria-hidden="true"><span></span></div>
+              <div class="machine-node hash-node">
+                <span>Trạng thái h</span>
+                <strong id="currentState">0</strong>
+              </div>
+            </div>
+            <pre id="stepFormula" class="formula-box">Nhập chuỗi để bắt đầu.</pre>
+          </article>
+
+          <article class="panel bit-panel">
+            <div class="panel-title">
+              <h2>Dấu vân tay nhị phân</h2>
+              <span>32 bit thấp của hash</span>
+            </div>
+            <div id="bitGrid" class="bit-grid" aria-label="Bieu dien bit"></div>
+            <div class="metric-row">
+              <div>
+                <span>Hex</span>
+                <strong id="hexHash">00000000</strong>
+              </div>
+              <div>
+                <span>Bucket</span>
+                <strong id="bucketIndex">0</strong>
+              </div>
+              <div>
+                <span>Độ dài</span>
+                <strong id="lengthMetric">0</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel bucket-panel">
+            <div class="panel-title">
+              <h2>Bảng hash 12 bucket</h2>
+              <span>Cùng bucket nghĩa là có khả năng va chạm</span>
+            </div>
+            <div id="bucketGrid" class="bucket-grid" aria-label="Bang bucket"></div>
+          </article>
+
+          <article class="panel compare-panel">
+            <div class="panel-title">
+              <h2>Hiệu ứng avalanche</h2>
+              <span>Đổi 1 ký tự, hash đổi mạnh</span>
+            </div>
+            <label class="inline-input" for="compareInput">
+              <span>Chuỗi so sánh</span>
+              <input id="compareInput" type="text" value="Hashing" spellcheck="false" />
+            </label>
+            <div class="compare-hashes">
+              <div>
+                <span>Gốc</span>
+                <strong id="baseCompareHash">--</strong>
+              </div>
+              <div>
+                <span>So sánh</span>
+                <strong id="otherCompareHash">--</strong>
+              </div>
+            </div>
+            <div class="distance-wrap">
+              <div class="distance-label">
+                <span>Bit khác nhau</span>
+                <strong id="bitDistance">0/32</strong>
+              </div>
+              <div class="distance-track"><span id="distanceBar"></span></div>
+            </div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
