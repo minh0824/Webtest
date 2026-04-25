@@ -10,6 +10,17 @@ const state = {
   algorithm: "poly",
   language: "javascript",
   codeTheme: "midnight",
+  codeFont: "sfmono",
+  customFont: "",
+  customTheme: {
+    bg: "#111827",
+    text: "#e6edf5",
+    keyword: "#8ab4ff",
+    function: "#5eead4",
+    number: "#fca5a5",
+    string: "#86efac",
+    comment: "#94a3b8",
+  },
   step: 0,
   timer: null,
 };
@@ -266,6 +277,16 @@ const els = {
   resetBtn: document.querySelector("#resetBtn"),
   languageSelect: document.querySelector("#languageSelect"),
   themeSelect: document.querySelector("#themeSelect"),
+  fontSelect: document.querySelector("#fontSelect"),
+  customFontInput: document.querySelector("#customFontInput"),
+  customThemeControls: document.querySelector("#customThemeControls"),
+  customBg: document.querySelector("#customBg"),
+  customText: document.querySelector("#customText"),
+  customKeyword: document.querySelector("#customKeyword"),
+  customFunction: document.querySelector("#customFunction"),
+  customNumber: document.querySelector("#customNumber"),
+  customString: document.querySelector("#customString"),
+  customComment: document.querySelector("#customComment"),
   shortHash: document.querySelector("#shortHash"),
   algorithmFormula: document.querySelector("#algorithmFormula"),
   charStrip: document.querySelector("#charStrip"),
@@ -440,13 +461,58 @@ function renderCompare(baseLow32) {
 }
 
 
+const fontStacks = {
+  sfmono: '"SFMono-Regular", Consolas, "Liberation Mono", monospace',
+  menlo: 'Menlo, "SFMono-Regular", Consolas, monospace',
+  monaco: 'Monaco, Menlo, Consolas, monospace',
+  consolas: 'Consolas, "Liberation Mono", monospace',
+  cascadia: '"Cascadia Code", Consolas, monospace',
+  fira: '"Fira Code", "SFMono-Regular", Consolas, monospace',
+  jetbrains: '"JetBrains Mono", "SFMono-Regular", Consolas, monospace',
+  sourcecode: '"Source Code Pro", "SFMono-Regular", Consolas, monospace',
+};
+
+function selectedFontFamily() {
+  if (state.codeFont === "custom") {
+    return state.customFont.trim() || fontStacks.sfmono;
+  }
+  return fontStacks[state.codeFont] || fontStacks.sfmono;
+}
+
+function applyCodeAppearance() {
+  els.codeBlock.className = `code-block theme-${state.codeTheme}`;
+  els.codeBlock.style.fontFamily = selectedFontFamily();
+  els.customThemeControls.classList.toggle("hidden", state.codeTheme !== "custom");
+
+  if (state.codeTheme === "custom") {
+    const pairs = {
+      "--code-bg": state.customTheme.bg,
+      "--code-text": state.customTheme.text,
+      "--code-keyword": state.customTheme.keyword,
+      "--code-function": state.customTheme.function,
+      "--code-number": state.customTheme.number,
+      "--code-string": state.customTheme.string,
+      "--code-comment": state.customTheme.comment,
+    };
+
+    Object.entries(pairs).forEach(([key, value]) => {
+      els.codeBlock.style.setProperty(key, value);
+    });
+    return;
+  }
+
+  ["--code-bg", "--code-text", "--code-keyword", "--code-function", "--code-number", "--code-string", "--code-comment"].forEach((key) => {
+    els.codeBlock.style.removeProperty(key);
+  });
+}
+
 function renderCodeSample() {
   const language = codeSamples[state.language];
   const algorithm = algorithms[state.algorithm];
   const source = language.samples[state.algorithm];
 
   els.codeCaption.textContent = `${algorithm.name} bằng ${language.label} (.${language.extension})`;
-  els.codeBlock.className = `code-block theme-${state.codeTheme}`;
+  applyCodeAppearance();
   els.codeElement.innerHTML = highlightCode(source);
   els.codeNotes.innerHTML = "";
 
@@ -551,6 +617,31 @@ els.languageSelect.addEventListener("change", (event) => {
 els.themeSelect.addEventListener("change", (event) => {
   state.codeTheme = event.target.value;
   renderCodeSample();
+});
+
+els.fontSelect.addEventListener("change", (event) => {
+  state.codeFont = event.target.value;
+  renderCodeSample();
+});
+
+els.customFontInput.addEventListener("input", (event) => {
+  state.customFont = event.target.value;
+  renderCodeSample();
+});
+
+[
+  [els.customBg, "bg"],
+  [els.customText, "text"],
+  [els.customKeyword, "keyword"],
+  [els.customFunction, "function"],
+  [els.customNumber, "number"],
+  [els.customString, "string"],
+  [els.customComment, "comment"],
+].forEach(([input, key]) => {
+  input.addEventListener("input", (event) => {
+    state.customTheme[key] = event.target.value;
+    renderCodeSample();
+  });
 });
 
 els.stepSlider.addEventListener("input", (event) => {

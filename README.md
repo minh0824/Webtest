@@ -17,6 +17,7 @@
 - Minh hoạ cách key được phân bố vào 12 bucket trong bảng hash.
 - So sánh hiệu ứng avalanche khi thay đổi chuỗi đầu vào.
 - Xem mã giải thuật bằng JavaScript, Python, C++ và Java với nhiều theme syntax highlight.
+- Đổi theme code như Monokai Pro, Solarized Dark, One Dark Pro hoặc tự chỉnh màu và font chữ.
 
 ## Chạy local
 

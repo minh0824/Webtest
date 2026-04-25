@@ -252,11 +252,37 @@ input[type="range"] {
 
 .code-toolbar {
   display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(180px, 240px);
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
   gap: 14px;
   padding: 16px;
+  background: #fafcff;
+}
+
+.custom-theme-controls {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(96px, 1fr));
+  gap: 10px;
+  padding: 0 16px 16px;
   border-bottom: 1px solid var(--line);
   background: #fafcff;
+}
+
+.custom-theme-controls.hidden {
+  display: none;
+}
+
+.custom-theme-controls label {
+  display: grid;
+  gap: 7px;
+}
+
+.custom-theme-controls input[type="color"] {
+  width: 100%;
+  min-height: 38px;
+  padding: 3px;
+  border: 1px solid #cfd7e4;
+  border-radius: 8px;
+  background: #fff;
 }
 
 .code-layout {
@@ -382,6 +408,107 @@ input[type="range"] {
 
 .theme-contrast .tok-comment {
   color: #b8b8b8;
+}
+
+
+.theme-monokai {
+  background: #2d2a2e;
+  color: #fcfcfa;
+}
+
+.theme-monokai .tok-keyword {
+  color: #ff6188;
+}
+
+.theme-monokai .tok-function {
+  color: #a9dc76;
+}
+
+.theme-monokai .tok-number {
+  color: #ab9df2;
+}
+
+.theme-monokai .tok-string {
+  color: #ffd866;
+}
+
+.theme-monokai .tok-comment {
+  color: #727072;
+}
+
+.theme-solarized {
+  background: #002b36;
+  color: #93a1a1;
+}
+
+.theme-solarized .tok-keyword {
+  color: #268bd2;
+}
+
+.theme-solarized .tok-function {
+  color: #2aa198;
+}
+
+.theme-solarized .tok-number {
+  color: #d33682;
+}
+
+.theme-solarized .tok-string {
+  color: #859900;
+}
+
+.theme-solarized .tok-comment {
+  color: #657b83;
+}
+
+.theme-onedark {
+  background: #282c34;
+  color: #abb2bf;
+}
+
+.theme-onedark .tok-keyword {
+  color: #c678dd;
+}
+
+.theme-onedark .tok-function {
+  color: #61afef;
+}
+
+.theme-onedark .tok-number {
+  color: #d19a66;
+}
+
+.theme-onedark .tok-string {
+  color: #98c379;
+}
+
+.theme-onedark .tok-comment {
+  color: #5c6370;
+}
+
+.theme-custom {
+  background: var(--code-bg);
+  color: var(--code-text);
+}
+
+.theme-custom .tok-keyword {
+  color: var(--code-keyword);
+}
+
+.theme-custom .tok-function {
+  color: var(--code-function);
+}
+
+.theme-custom .tok-number {
+  color: var(--code-number);
+}
+
+.theme-custom .tok-string {
+  color: var(--code-string);
+}
+
+.theme-custom .tok-comment {
+  color: var(--code-comment);
 }
 
 .panel-title {
@@ -720,7 +847,8 @@ input[type="range"] {
   .settings-grid,
   .range-block,
   .button-row,
-  .code-toolbar {
+  .code-toolbar,
+  .custom-theme-controls {
     grid-template-columns: 1fr;
     grid-column: auto;
   }

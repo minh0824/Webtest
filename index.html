@@ -158,10 +158,43 @@
                 <span>Theme</span>
                 <select id="themeSelect">
                   <option value="midnight">Midnight</option>
+                  <option value="monokai">Monokai Pro</option>
+                  <option value="solarized">Solarized Dark</option>
+                  <option value="onedark">One Dark Pro</option>
                   <option value="paper">Paper</option>
                   <option value="contrast">High contrast</option>
+                  <option value="custom">Tuỳ chỉnh</option>
                 </select>
               </label>
+
+              <label class="select-block" for="fontSelect">
+                <span>Font hệ thống</span>
+                <select id="fontSelect">
+                  <option value="sfmono">SF Mono / Consolas</option>
+                  <option value="menlo">Menlo</option>
+                  <option value="monaco">Monaco</option>
+                  <option value="consolas">Consolas</option>
+                  <option value="cascadia">Cascadia Code</option>
+                  <option value="fira">Fira Code</option>
+                  <option value="jetbrains">JetBrains Mono</option>
+                  <option value="sourcecode">Source Code Pro</option>
+                  <option value="custom">Font tự nhập</option>
+                </select>
+              </label>
+
+              <label class="select-block custom-font-field" for="customFontInput">
+                <span>Font-family</span>
+                <input id="customFontInput" type="text" value="" placeholder="Ví dụ: Menlo, monospace" spellcheck="false" />
+              </label>
+            </div>
+            <div id="customThemeControls" class="custom-theme-controls hidden" aria-label="Tuy chinh theme ma nguon">
+              <label><span>Nền</span><input id="customBg" type="color" value="#111827" /></label>
+              <label><span>Chữ</span><input id="customText" type="color" value="#e6edf5" /></label>
+              <label><span>Keyword</span><input id="customKeyword" type="color" value="#8ab4ff" /></label>
+              <label><span>Function</span><input id="customFunction" type="color" value="#5eead4" /></label>
+              <label><span>Number</span><input id="customNumber" type="color" value="#fca5a5" /></label>
+              <label><span>String</span><input id="customString" type="color" value="#86efac" /></label>
+              <label><span>Comment</span><input id="customComment" type="color" value="#94a3b8" /></label>
             </div>
             <div class="code-layout">
               <pre id="codeBlock" class="code-block theme-midnight" aria-label="Ma nguon minh hoa"><code></code></pre>
