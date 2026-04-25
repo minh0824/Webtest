@@ -1,49 +1,54 @@
 # Hashing Visualizer
 
-Trang web minh hoa truc quan cach thuat toan hashing xu ly chuoi theo tung ky tu.
+![Ảnh minh hoạ giao diện Hashing Visualizer](./assets/hashing-preview.svg)
 
-## Tinh nang
+**Hashing Visualizer** là một trang web minh hoạ trực quan cách các thuật toán hashing xử lý chuỗi theo từng ký tự. Dự án phù hợp để học hoặc giải thích khái niệm string hashing, hash table, bucket và hiệu ứng avalanche.
 
-- Nhap chuoi bat ky va quan sat hash thay doi sau moi ky tu.
-- Dieu khien tung buoc bang slider, nut lui, nut tien, chay tu dong va reset.
-- Ho tro 3 thuat toan:
+## Tính năng
+
+- Nhập chuỗi bất kỳ và quan sát hash thay đổi sau mỗi ký tự.
+- Điều khiển mô phỏng từng bước bằng slider, nút lùi, nút tiến, chạy tự động và reset.
+- Hỗ trợ 3 thuật toán:
   - Polynomial rolling hash
   - DJB2
   - FNV-1a 32-bit
-- Hien thi cong thuc tinh hash o tung buoc.
-- Hien thi dau van tay nhi phan 32-bit va gia tri hex.
-- Minh hoa bucket trong bang hash de thay cach key duoc phan bo.
-- So sanh avalanche effect khi thay doi chuoi dau vao.
+- Hiển thị công thức tính hash ở từng bước.
+- Hiển thị giá trị hash dạng hex và dấu vân tay nhị phân 32-bit.
+- Minh hoạ cách key được phân bố vào 12 bucket trong bảng hash.
+- So sánh hiệu ứng avalanche khi thay đổi chuỗi đầu vào.
 
-## Chay local
+## Chạy local
 
-Co the mo truc tiep file `index.html` bang trinh duyet.
+Bạn có thể mở trực tiếp file `index.html` bằng trình duyệt.
 
-Hoac chay local server:
+Hoặc chạy local server:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Sau do mo:
+Sau đó mở trình duyệt tại:
 
 ```text
 http://localhost:8000
 ```
 
-## Cau truc file
+## Cấu trúc thư mục
 
 ```text
 .
+├── assets/
+│   └── hashing-preview.svg
 ├── index.html
 ├── styles.css
-└── app.js
+├── app.js
+└── README.md
 ```
 
-## Cong nghe
+## Công nghệ sử dụng
 
 - HTML
 - CSS
-- JavaScript thuan
+- JavaScript thuần
 
-Khong can cai dat dependency.
+Dự án không cần cài đặt dependency.

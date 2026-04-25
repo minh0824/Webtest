@@ -1,0 +1,55 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#F6F3EB"/>
+  <rect x="54" y="54" width="1092" height="567" rx="18" fill="#FFFFFF" stroke="#D9DEE8" stroke-width="3"/>
+  <rect x="54" y="54" width="1092" height="128" rx="18" fill="#0F766E"/>
+  <path d="M54 164H1146V183H54V164Z" fill="#0F766E"/>
+  <text x="92" y="112" fill="#D7F7F1" font-family="Arial, sans-serif" font-size="22" font-weight="700">STRING HASHING VISUALIZER</text>
+  <text x="92" y="157" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="42" font-weight="800">Hash từng ký tự, thấy từng phép tính</text>
+
+  <rect x="92" y="222" width="548" height="112" rx="14" fill="#F8FAFC" stroke="#D9DEE8" stroke-width="2"/>
+  <text x="118" y="260" fill="#667085" font-family="Arial, sans-serif" font-size="19" font-weight="700">Chuỗi đầu vào</text>
+  <text x="118" y="306" fill="#17202A" font-family="Courier New, monospace" font-size="34" font-weight="700">hashing</text>
+
+  <g>
+    <rect x="96" y="384" width="74" height="74" rx="12" fill="#EAF4F2" stroke="#0F766E" stroke-width="3"/>
+    <rect x="190" y="384" width="74" height="74" rx="12" fill="#EAF4F2" stroke="#0F766E" stroke-width="3"/>
+    <rect x="284" y="384" width="74" height="74" rx="12" fill="#EAF4F2" stroke="#0F766E" stroke-width="3"/>
+    <rect x="378" y="384" width="74" height="74" rx="12" fill="#FDEDEC" stroke="#D6503F" stroke-width="3"/>
+    <rect x="472" y="384" width="74" height="74" rx="12" fill="#F8FAFC" stroke="#D9DEE8" stroke-width="3"/>
+    <rect x="566" y="384" width="74" height="74" rx="12" fill="#F8FAFC" stroke="#D9DEE8" stroke-width="3"/>
+    <text x="121" y="432" fill="#17202A" font-family="Courier New, monospace" font-size="30" font-weight="700">h</text>
+    <text x="215" y="432" fill="#17202A" font-family="Courier New, monospace" font-size="30" font-weight="700">a</text>
+    <text x="309" y="432" fill="#17202A" font-family="Courier New, monospace" font-size="30" font-weight="700">s</text>
+    <text x="403" y="432" fill="#17202A" font-family="Courier New, monospace" font-size="30" font-weight="700">h</text>
+    <text x="499" y="432" fill="#667085" font-family="Courier New, monospace" font-size="30" font-weight="700">i</text>
+    <text x="591" y="432" fill="#667085" font-family="Courier New, monospace" font-size="30" font-weight="700">n</text>
+  </g>
+
+  <path d="M694 420H778" stroke="#C28A12" stroke-width="8" stroke-linecap="round"/>
+  <path d="M758 396L784 420L758 444" stroke="#C28A12" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="820" y="222" width="286" height="112" rx="14" fill="#111827"/>
+  <text x="848" y="260" fill="#B7C3D5" font-family="Arial, sans-serif" font-size="18" font-weight="700">Công thức</text>
+  <text x="848" y="302" fill="#E6EDF5" font-family="Courier New, monospace" font-size="24" font-weight="700">h = h × 31 + code</text>
+
+  <rect x="820" y="384" width="286" height="164" rx="14" fill="#F8FAFC" stroke="#D9DEE8" stroke-width="2"/>
+  <text x="848" y="424" fill="#667085" font-family="Arial, sans-serif" font-size="18" font-weight="700">Hash 32-bit</text>
+  <text x="848" y="474" fill="#17202A" font-family="Courier New, monospace" font-size="34" font-weight="700">5F3759DF</text>
+  <g fill="#0F766E">
+    <rect x="850" y="504" width="18" height="18" rx="4"/>
+    <rect x="878" y="504" width="18" height="18" rx="4"/>
+    <rect x="934" y="504" width="18" height="18" rx="4"/>
+    <rect x="990" y="504" width="18" height="18" rx="4"/>
+    <rect x="1046" y="504" width="18" height="18" rx="4"/>
+  </g>
+  <g fill="#D9DEE8">
+    <rect x="906" y="504" width="18" height="18" rx="4"/>
+    <rect x="962" y="504" width="18" height="18" rx="4"/>
+    <rect x="1018" y="504" width="18" height="18" rx="4"/>
+    <rect x="1074" y="504" width="18" height="18" rx="4"/>
+  </g>
+
+  <rect x="92" y="506" width="548" height="42" rx="10" fill="#EEF6F4"/>
+  <rect x="92" y="506" width="372" height="42" rx="10" fill="#D6503F"/>
+  <text x="112" y="534" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="18" font-weight="800">Bucket #7</text>
+</svg>
