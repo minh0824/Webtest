@@ -76,6 +76,8 @@
   --muted: #667085;
   --line: #d9dee8;
   --panel: #ffffff;
+  --surface: #fbfcfe;
+  --control: #ffffff;
   --paper: #f6f3eb;
   --teal: #0f766e;
   --teal-dark: #0b4f4a;
@@ -85,6 +87,24 @@
   --green: #168a51;
   --shadow: 0 18px 55px rgba(28, 33, 43, 0.13);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  --ink: #e6edf5;
+  --muted: #a6b2c3;
+  --line: #2d3748;
+  --panel: #121a24;
+  --surface: #172231;
+  --control: #0e1621;
+  --paper: #0b1118;
+  --teal: #5eead4;
+  --teal-dark: #99f6e4;
+  --coral: #fb7185;
+  --gold: #facc15;
+  --blue: #93c5fd;
+  --green: #86efac;
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.34);
 }
 
 * {
@@ -99,6 +119,13 @@ body {
     radial-gradient(circle at 10% 12%, rgba(15, 118, 110, 0.14), transparent 28%),
     radial-gradient(circle at 88% 22%, rgba(214, 80, 63, 0.12), transparent 26%),
     linear-gradient(135deg, #f6f3eb 0%, #f8fafc 54%, #eef6f4 100%);
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(circle at 10% 12%, rgba(94, 234, 212, 0.11), transparent 28%),
+    radial-gradient(circle at 88% 22%, rgba(251, 113, 133, 0.11), transparent 26%),
+    linear-gradient(135deg, #080d13 0%, #0b1118 48%, #101923 100%);
 }
 
 button,
@@ -161,6 +188,34 @@ h1 {
 }
 
 h2 {
+  font-size: 1rem;
+}
+
+.top-actions {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 132px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-weight: 800;
+}
+
+.theme-toggle[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.toggle-icon {
   font-size: 1rem;
 }
 
@@ -872,6 +927,10 @@ input[type="range"] {
     align-items: stretch;
   }
 
+  .top-actions {
+    flex-direction: column;
+  }
+
   .machine {
     grid-template-columns: 1fr;
   }
@@ -937,4 +996,76 @@ input[type="range"] {
   .compare-hashes {
     grid-template-columns: 1fr;
   }
+}
+
+
+body.dark-mode .workspace {
+  background: rgba(13, 20, 29, 0.88);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+body.dark-mode .control-panel,
+body.dark-mode .code-toolbar,
+body.dark-mode .custom-theme-controls {
+  background: rgba(18, 26, 36, 0.82);
+}
+
+body.dark-mode textarea,
+body.dark-mode select,
+body.dark-mode input[type="text"] {
+  border-color: #334155;
+  background: var(--control);
+  color: var(--ink);
+}
+
+body.dark-mode .panel,
+body.dark-mode .code-notes,
+body.dark-mode .metric-row div,
+body.dark-mode .compare-hashes div,
+body.dark-mode .machine-node,
+body.dark-mode .char-tile,
+body.dark-mode .bucket {
+  background: var(--panel);
+  border-color: var(--line);
+}
+
+body.dark-mode .char-tile.done {
+  background: rgba(134, 239, 172, 0.11);
+}
+
+body.dark-mode .char-tile.active {
+  background: rgba(251, 113, 133, 0.14);
+}
+
+body.dark-mode .icon-button {
+  background: rgba(94, 234, 212, 0.13);
+  color: var(--teal-dark);
+}
+
+body.dark-mode .ghost-button {
+  border-color: #334155;
+  background: #0e1621;
+  color: var(--ink);
+}
+
+body.dark-mode .bit {
+  background: #1f2937;
+  color: #cbd5e1;
+}
+
+body.dark-mode .bucket-fill {
+  background: #263244;
+}
+
+body.dark-mode .bucket-label,
+body.dark-mode .code-notes ul {
+  color: #cbd5e1;
+}
+
+body.dark-mode .distance-track {
+  background: #1f2937;
+}
+
+body.dark-mode .formula-box {
+  background: #050a10;
 }

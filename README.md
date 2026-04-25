@@ -17,6 +17,7 @@
 - Minh hoạ cách key được phân bố vào 12 bucket trong bảng hash.
 - So sánh hiệu ứng avalanche khi thay đổi chuỗi đầu vào.
 - Xem mã giải thuật bằng JavaScript, Python, C++ và Java với nhiều theme syntax highlight.
+- Bật/tắt dark mode và tự lưu lựa chọn cho lần mở sau.
 - Đổi theme code như Monokai Pro, Solarized Dark, One Dark Pro hoặc tự chỉnh màu và font chữ.
 - Fira Code, JetBrains Mono và Source Code Pro đã được bundle trong repo để người dùng không cần cài font trên máy.
 

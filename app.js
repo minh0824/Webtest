@@ -8,6 +8,7 @@ const state = {
   text: "hashing",
   compareText: "Hashing",
   algorithm: "poly",
+  darkMode: localStorage.getItem("hashingDarkMode") === "true",
   language: "javascript",
   codeTheme: "midnight",
   codeFont: "sfmono",
@@ -275,6 +276,8 @@ const els = {
   playBtn: document.querySelector("#playBtn"),
   nextBtn: document.querySelector("#nextBtn"),
   resetBtn: document.querySelector("#resetBtn"),
+  darkModeToggle: document.querySelector("#darkModeToggle"),
+  darkModeLabel: document.querySelector("#darkModeLabel"),
   languageSelect: document.querySelector("#languageSelect"),
   themeSelect: document.querySelector("#themeSelect"),
   fontSelect: document.querySelector("#fontSelect"),
@@ -308,6 +311,13 @@ const els = {
   codeElement: document.querySelector("#codeBlock code"),
   codeNotes: document.querySelector("#codeNotes"),
 };
+
+function applyDarkMode() {
+  document.body.classList.toggle("dark-mode", state.darkMode);
+  els.darkModeToggle.setAttribute("aria-pressed", String(state.darkMode));
+  els.darkModeLabel.textContent = state.darkMode ? "Light mode" : "Dark mode";
+  localStorage.setItem("hashingDarkMode", String(state.darkMode));
+}
 
 function charsOf(text) {
   return Array.from(text);
@@ -646,6 +656,11 @@ els.customFontInput.addEventListener("input", (event) => {
   });
 });
 
+els.darkModeToggle.addEventListener("click", () => {
+  state.darkMode = !state.darkMode;
+  applyDarkMode();
+});
+
 els.stepSlider.addEventListener("input", (event) => {
   stopPlayback();
   setStep(Number(event.target.value));
@@ -682,4 +697,5 @@ els.playBtn.addEventListener("click", () => {
   render();
 });
 
+applyDarkMode();
 render();
