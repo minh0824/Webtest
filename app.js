@@ -481,7 +481,9 @@ function selectedFontFamily() {
 
 function applyCodeAppearance() {
   els.codeBlock.className = `code-block theme-${state.codeTheme}`;
-  els.codeBlock.style.fontFamily = selectedFontFamily();
+  const fontFamily = selectedFontFamily();
+  els.codeBlock.style.fontFamily = fontFamily;
+  els.codeElement.style.fontFamily = fontFamily;
   els.customThemeControls.classList.toggle("hidden", state.codeTheme !== "custom");
 
   if (state.codeTheme === "custom") {

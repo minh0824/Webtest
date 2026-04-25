@@ -305,6 +305,10 @@ input[type="range"] {
   tab-size: 4;
 }
 
+.code-block code {
+  font-family: inherit;
+}
+
 .code-notes {
   display: grid;
   align-content: start;
