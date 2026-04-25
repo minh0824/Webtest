@@ -467,9 +467,9 @@ const fontStacks = {
   monaco: 'Monaco, Menlo, Consolas, monospace',
   consolas: 'Consolas, "Liberation Mono", monospace',
   cascadia: '"Cascadia Code", Consolas, monospace',
-  fira: '"Fira Code", "SFMono-Regular", Consolas, monospace',
-  jetbrains: '"JetBrains Mono", "SFMono-Regular", Consolas, monospace',
-  sourcecode: '"Source Code Pro", "SFMono-Regular", Consolas, monospace',
+  fira: '"Bundled Fira Code", "SFMono-Regular", Consolas, monospace',
+  jetbrains: '"Bundled JetBrains Mono", "SFMono-Regular", Consolas, monospace',
+  sourcecode: '"Bundled Source Code Pro", "SFMono-Regular", Consolas, monospace',
 };
 
 function selectedFontFamily() {
